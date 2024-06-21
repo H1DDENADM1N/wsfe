@@ -6,9 +6,22 @@ __LANGUAGE__ = "cn"
 
 
 class WindowsShellFoldersExplorer:
+    """
+    A class to manage the Windows shell folders.
+
+    Attributes:
+        - folders_dict: A dictionary containing the shell folders and their descriptions.
+
+    Funtions:
+        - open_shell_folder(folder_id: int) -> None: Opens the shell:<***> folder in explorer with the given ID.
+        - print_folder_about() -> None: Prints a list of all the shell folders and their descriptions.
+    """
+
     def __init__(self):
         self.folders_dict: dict[str, tuple[str, str]] = OrderedDict(
             {
+                # Format："Folder Name": ("Description in English", "中文描述")
+                # You cam note or remove the comments below if you don't need them, nothing else needs to be changed.
                 "Administrative Tools": (
                     "These are the tools and settings that are available to administrators on a Windows system.",
                     "管理员在 Windows 系统上可用的工具和设置。",
@@ -165,6 +178,11 @@ class WindowsShellFoldersExplorer:
         )
 
     def open_shell_folder(self, folder_id: int) -> None:
+        """
+        Opens the shell:<***> folder in explorer with the given ID.
+
+        :param folder_id: The ID of the shell folder to open.
+        """
         if folder_id not in range(1, len(self.folders_dict) + 1):
             match __LANGUAGE__:
                 case "cn":
@@ -185,6 +203,9 @@ class WindowsShellFoldersExplorer:
             )
 
     def print_folder_about(self) -> None:
+        """
+        Prints a list of all the shell folders and their descriptions.
+        """
         match __LANGUAGE__:
             case "cn":
                 for i, (key, value) in enumerate(self.folders_dict.items(), start=1):
